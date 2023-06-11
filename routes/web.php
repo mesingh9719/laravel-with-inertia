@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Monitor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $monitors = Monitor::paginate(10);
+
+    return Inertia::render('Home',[
+        'monitors' => $monitors
+    ]);
+});
+
+Route::get('about', function () {
+    return Inertia::render('About');
+});
+
+Route::get('contact', function () {
+    return Inertia::render('Contact');
+});
+
+
+Route::get('/test',function(){
+    return Inertia::render('Test');
+});
+
+Route::get('login', function () {
+    return Inertia::render('Login');
+});
+
+Route::get('site/create', function () {
+    return Inertia::render('Site/Create');
+});
+
+Route::post('auth/login',function (Request $request){
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+    return Inertia::location('/');
 });
