@@ -46,9 +46,18 @@ Route::get('site/create', function () {
 });
 
 Route::post('auth/login',function (Request $request){
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required'
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
     ]);
-    return Inertia::location('/');
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+
+        return Inertia::location('/');
+    }
+
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ])->onlyInput('email');
 });

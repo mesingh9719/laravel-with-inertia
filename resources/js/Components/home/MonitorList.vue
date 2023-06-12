@@ -32,7 +32,7 @@
                     </tbody>
                 </table>
             </table>
-            <Paginate :next="monitors.next_page_url" :prev="monitors.prev_page_url" :currentPage="monitors.current_page" :lastPage="monitors.last_page"/>
+            <Paginate :path="monitors.path" :next="monitors.next_page_url" :prev="monitors.prev_page_url" :currentPage="monitors.current_page" :lastPage="monitors.last_page"/>
         </div>
 </template>
 <script setup>

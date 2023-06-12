@@ -17,8 +17,8 @@
                     <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
                     <a v-for="num in lastPage"
                        :key="num"
-                        href="#"
-                        aria-current="page"
+                       :href="path + '?page=' + num"
+                       aria-current="page"
                         :class=" currentPage == num
                          ? 'relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' : 'relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' "
                        >
@@ -44,5 +44,5 @@ const items = [
     { id: 3, title: 'User Interface Designer', department: 'Design', type: 'Full-time', location: 'Remote' },
 ]
 
-defineProps(['next','prev','currentPage','lastPage'])
+defineProps(['next','prev','currentPage','lastPage','path'])
 </script>
